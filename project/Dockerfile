@@ -21,3 +21,11 @@ RUN pip install -r requirements.txt
 
 # add app
 COPY . .
+
+# add entrypoint
+COPY ./entrypoint.sh .
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+# run entrypoint
+# CMD vs ENTRYPOINT https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

@@ -9,13 +9,16 @@ log = logging.getLogger("uvicorn")
 
 
 def create_application() -> FastAPI:
-    application = FastAPI()  
+    application = FastAPI()
     application.include_router(ping.router)
-    application.inclue_router(summeries.router, prefix="/summaries", tag=["summaries"])
+    application.include_router(
+        summeries.router, prefix="/summaries", tags=["summaries"])
 
     return application
 
+
 app = create_application()
+
 
 @app.on_event("startup")
 async def startup_event() -> None:
